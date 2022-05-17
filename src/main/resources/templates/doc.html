@@ -2,15 +2,57 @@
 <head>
     <meta charset="UTF-8">
     <title>File Upload / Download</title>
+    <link th:href="@{/}" rel="stylesheet" />
+    <style>
+        .button {
+            background-color: #EA4C89;
+            border-radius: 8px;
+            border-style: none;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            cursor: pointer;
+            display: inline-block;
+            font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            height: 40px;
+            line-height: 20px;
+            list-style: none;
+            margin: 0;
+            outline: none;
+            padding: 10px 16px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transition: color 100ms;
+            vertical-align: baseline;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            }
+        .button:hover,
+        .button:focus{
+            background-color: #F082AC;
+        }
+
+
+        .file {
+
+            font-size: 17px;
+            color: #cccccc;
+        }
+    </style>
 </head>
 <body>
+
 <center>
+
 <div>
 
     <h3>Upload Multiple Files</h3>
     <form id="uploadFiles" name="uploadFiles" method="post" th:action=@{/uploadFiles} encType="multipart/form-data">
-        <input type="file" name="files" multiple required />
-        <button type="submit">Submit</button>
+        <input class="file" type="file" name="files" multiple required />
+        <button class="button" type="submit">Submit</button>
     </form>
 </div>
 
@@ -28,7 +70,8 @@
         <tr th:each="doc:${docs}">
             <td th:text="${doc.Id}" />
             <td th:text="${doc.docName}"/>
-            <td><a th:href="@{'/downloadFile/'+${doc.id}}">Overview</a></td>
+            <td class="button"><a th:href="@{'/downloadFile/'+${doc.id}}">Overview</a></td>
+
         </tr>
         </tbody>
     </table>
